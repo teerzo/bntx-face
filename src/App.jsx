@@ -31,7 +31,8 @@ function App() {
       <div className='container'>
         <UI isMobile={isMobile} />
       </div>
-      <div className='canvas-parent' style={{ left: isMobile ? 0 : navWidth}}>
+      {/* <div className='canvas-parent' style={{ left: isMobile ? 0 : navWidth}}> */}
+      <div className='canvas-parent'>
         <R3FCanvas isMobile={isMobile} navWidth={navWidth} />
        
       </div>

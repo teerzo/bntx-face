@@ -41,7 +41,7 @@ export default function Muscles() {
 
         const fetchMuscles = async() => {
             try {
-                const response = await fetch("./public/data/muscles.json");
+                const response = await fetch("./data/muscles.json");
                 const muscles = await response.json();
                 console.log(muscles);
 
@@ -79,8 +79,9 @@ export default function Muscles() {
     console.log('muscles');
 
     return (
-
-        <> </>
+        <> 
+            <
+        </>
 
         // <Canvas>  
         //     <ambientLight />

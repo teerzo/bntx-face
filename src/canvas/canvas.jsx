@@ -5,47 +5,42 @@ import { Suspense } from "react";
 
 import { OrbitControls } from "@react-three/drei";
 import Scene from "../scene/scene";
+import Camera from "../camera/camera";
 
-
-function Box(props) {
-    // This reference will give us direct access to the mesh
-    const meshRef = useRef()
-    // Set up state for the hovered and active state
-    const [hovered, setHover] = useState(false)
-    const [active, setActive] = useState(false)
-    // Subscribe this component to the render-loop, rotate the mesh every frame
-    useFrame((state, delta) => (meshRef.current.rotation.x += delta))
-    // Return view, these are regular three.js elements expressed in JSX
-    return (
-
-        <mesh
-            {...props}
-            ref={meshRef}
-            scale={active ? 1.5 : 1}
-            onClick={(event) => setActive(!active)}
-            onPointerOver={(event) => setHover(true)}
-            onPointerOut={(event) => setHover(false)}>
-            <boxGeometry args={[1, 1, 1]} />
-            <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
-        </mesh>
-
-    )
-}
 
 export default function R3FCanvas({ children, ...props }) {
 
     // console.log('canvas');
 
+    const cameraDefault = [0, 18.5, 5];
+    const cameraTarget = [0, 18.5, 0];
+
     return (
 
-        <Canvas>
+        <Canvas
+            camera={{ position: cameraDefault }}
+        >
             <Suspense fallback={null}>
-                <ambientLight />
-                <pointLight position={[10, 10, 10]} />
-                {/* <Box position={[-1.2, 0, 0]} /> */}
-                {/* <Box position={[1.2, 0, 0]} /> */}
+
+                {/* <pointLight position={[0, 18, 3]} intensity={2} /> */}
+                {/* <ambientLight intensity={0.5} /> */}
+                <spotLight
+                    position={[0, 22, 3]}
+                    angle={1}
+                    penumbra={1}
+                    intensity={1}
+                    decay={0.1}
+                    // castShadow
+                    // shadow-mapSize-width={1028}
+                    // shadow-mapSize-height={1028}
+                />
+
+                {/* <ambientLight /> */}
+                {/* <Camera target={cameraTarget} /> */}
+
+                {/* <pointLight position={[10, 10, 10]} /> */}
                 <Scene />
-                <OrbitControls />
+                <OrbitControls target={cameraTarget} />
             </Suspense>
         </Canvas>
     )

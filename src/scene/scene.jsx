@@ -6,7 +6,7 @@ import { useLoader } from '@react-three/fiber'
 
 import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
 import Muscle from '../muscle/muscle';
-
+import Misc from '../misc/misc';
 
 function Box(props) {
     // This reference will give us direct access to the mesh
@@ -37,21 +37,38 @@ export default function Scene() {
 
     const loader = new OBJLoader();
     const [muscles, setMuscles] = useState([]);
+    const [misc, setMisc] = useState([]);
 
     useEffect(() => {
         const fetchMuscles = async () => {
             try {
                 console.log('fetchMuscles');
-                const response = await fetch("./public/data/muscles.json");
+                const response = await fetch("./data/muscles.json");
                 const json = await response.json();
 
-                let _muscles = [];
-                for (let i = 0; i < json.length; i++) {
-                    console.log('muscle', json[i]);
-                    _muscles.push(json[i])
+                console.log('json', json);
 
+
+                if (json?.misc) {
+                    let _misc = [];
+                    for (let i = 0; i < json?.misc.length; i++) {
+                        // console.log('muscle', json.muscles[i]);
+                        if (!json.misc[i].skipLoad) {
+                            _misc.push(json.misc[i])
+                        }
+                    }
+                    setMisc(_misc);
                 }
-                setMuscles(_muscles);
+                if (json?.muscles) {
+                    let _muscles = [];
+                    for (let i = 0; i < json?.muscles.length; i++) {
+                        // console.log('muscle', json.muscles[i]);
+                        if (!json.muscles[i].skipLoad) {
+                            _muscles.push(json.muscles[i])
+                        }
+                    }
+                    setMuscles(_muscles);
+                }
             }
             catch (error) {
                 console.log('error', error);
@@ -70,6 +87,12 @@ export default function Scene() {
             {muscles.map((item, key) => {
                 return (
                     <Muscle key={key} data={item} />
+                )
+            })}
+
+            {misc.map((item, key) => {
+                return (
+                    <Misc key={key} data={item} />
                 )
             })}
         </>

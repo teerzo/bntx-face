@@ -55,7 +55,7 @@ export default function Mesh(data, ...props) {
                     onPointerOver={(event) => setHover(true)}
                     onPointerOut={(event) => setHover(false)}>
                         
-                    <meshPhongMaterial color={'#e09a84'} emissive={hovered ? '#770000' : '#000000'}  />
+                    <meshPhongMaterial color={'#d9d0b8'} emissive={hovered ? '#770000' : '#000000'}  />
                 </mesh>
             )
         }

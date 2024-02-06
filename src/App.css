@@ -70,6 +70,8 @@ canvas {
 }
 
 .ui .top-nav {
+  display: none;
+
   border: 1px solid red;
 
 
@@ -82,15 +84,21 @@ canvas {
 }
 
 .ui .mobile-background {
+  display: none;
+
   border: 1px solid red;
 }
 .ui .background {
+  display: none;
+
   border: 1px solid red;
 
   margin-left: 200px;
 }
 
 .ui .bottom-nav {
+  display: none;
+
   border: 1px solid red;
 
   position: absolute;
@@ -100,6 +108,8 @@ canvas {
 }
 
 .ui .side-nav {
+  display: none;
+
   border: 1px solid red;
 
   position: absolute;
