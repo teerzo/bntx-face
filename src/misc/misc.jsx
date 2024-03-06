@@ -8,7 +8,7 @@ import { Canvas, useFrame, useGraph } from '@react-three/fiber'
 import Mesh from './mesh';
 
 
-export default function Muscle(data, ...props) {
+export default function Misc(data, ...props) {
 
     // This reference will give us direct access to the mesh
     const meshRef = useRef()

@@ -1,6 +1,16 @@
 {
     "misc": [
         {
+            "name": "skin",
+            "displayName": "Skin",
+            "children": [],
+            "models": [
+                {
+                    "fileName": "male_body.obj"
+                }
+            ]
+        },
+        {
             "name": "skull",
             "displayName": "Skull",
             "children": [],

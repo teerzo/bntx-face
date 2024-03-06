@@ -26,7 +26,7 @@ export default function Mesh(data, ...props) {
         if (!data.data.fileName) {
             return null
         }
-        
+
 
         const obj = useLoader(OBJLoader, `./obj/${data.data.fileName}`, (loader) => {
             // materials.preload();
@@ -44,6 +44,9 @@ export default function Mesh(data, ...props) {
         const firstNode = Object.keys(nodes)[0];
 
 
+        if (data.data.fileName === 'male_body.obj') {
+            console.log('data', data);
+        }
 
         if (nodes[firstNode] && nodes[firstNode].geometry) {
             // return <mesh geometry={nodes.Skull_High_Res.geometry} material={materials.metal} />
@@ -54,8 +57,13 @@ export default function Mesh(data, ...props) {
                     onClick={(event) => setActive(!active)}
                     onPointerOver={(event) => setHover(true)}
                     onPointerOut={(event) => setHover(false)}>
-                        
-                    <meshPhongMaterial color={'#d9d0b8'} emissive={hovered ? '#770000' : '#000000'}  />
+
+                    {data.data.fileName === 'male_body.obj' ?
+                        <meshPhongMaterial color={'#eda4a4'} transparent={true} opacity={0.5} />
+                        :
+                        <meshPhongMaterial color={'#d9d0b8'} emissive={hovered ? '#770000' : '#000000'} />
+                    }
+                    {/* <meshPhongMaterial color={'#d9d0b8'} emissive={hovered ? '#770000' : '#000000'}  /> */}
                 </mesh>
             )
         }
